@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.OrderAdminMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.OrderAdmin" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_orderAdmin (orderNum,createBy,created,orderType,status,phoneNumber) values (#{orderNum},#{createBy},#{created},#{orderType},#{status},#{phoneNumber})
+  </insert>
+  
+  <select id = "queryAllOrderAdmin" resultType="com.ssm.model.OrderAdmin">
+  	select * from llc_orderAdmin
+  </select>
+  
+  <delete id="deleteOrderAdmin" parameterType="java.lang.String">
+  	delete from llc_orderAdmin where id = #{id}
+  </delete>
+  <select id = "updateOrderAdmin" parameterType="java.lang.String" resultType="com.ssm.model.OrderAdmin">
+  	select * from llc_orderAdmin where id = #{id}
+  </select>
+  
+  <update id="saveOrderAdmin" parameterType="com.ssm.model.OrderAdmin">
+  	update llc_orderAdmin 
+  	set orderNum=#{orderNum,jdbcType=VARCHAR},
+  		createBy=#{createBy,jdbcType=VARCHAR},
+  		orderType=#{orderType,jdbcType=VARCHAR},
+  		status=#{status,jdbcType=VARCHAR},
+  		phoneNumber=#{phoneNumber,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

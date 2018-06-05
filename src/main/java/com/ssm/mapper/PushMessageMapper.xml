@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.PushMessageMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.PushMessage" useGeneratedKeys="true" keyProperty="id">
+  	insert into pushMessage (sort,title,introdu,content,createDate) values (#{sort},#{title},#{introdu},#{content},#{createDate})
+  </insert>
+  
+  <select id = "queryAllPushMessage" resultType="com.ssm.model.PushMessage">
+  	select * from pushMessage 
+  </select>
+  
+  <delete id="deletePushMessage" parameterType="java.lang.String">
+  	delete from pushMessage where id = #{id}
+  </delete>
+  
+  <select id = "updatePushMessage" parameterType="java.lang.String" resultType="com.ssm.model.PushMessage">
+  	select * from pushMessage where id = #{id}
+  </select>
+  
+  <update id="savePushMessage" parameterType="com.ssm.model.PushMessage">
+  	update pushMessage 
+  	set sort=#{sort,jdbcType=VARCHAR},
+  		title=#{title,jdbcType=VARCHAR},
+		introdu=#{introdu,jdbcType=VARCHAR},
+		content=#{content,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

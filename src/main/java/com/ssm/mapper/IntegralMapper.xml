@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.IntegralMapper">
+
+
+
+  
+  <select id = "queryAllIntegral" resultType="com.ssm.model.Integral">
+  	select * from llc_integral
+  </select>
+  
+  <delete id="deleteIntegral" parameterType="java.lang.String">
+  	delete from llc_integral where id = #{id}
+  </delete>
+  <select id = "updateIntegral" parameterType="java.lang.String" resultType="com.ssm.model.Integral">
+  	select * from llc_integral where id = #{id}
+  </select>
+  
+  <update id="saveIntegral" parameterType="com.ssm.model.Integral">
+  	update llc_integral 
+  	set integralName=#{integralName,jdbcType=VARCHAR},
+  		integralAmount=#{integralAmount,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

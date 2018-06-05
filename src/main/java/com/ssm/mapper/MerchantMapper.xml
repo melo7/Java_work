@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.MerchantMapper">
+
+
+ <resultMap id="BaseResultMap" type="com.ssm.model.Merchant" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="idNumber" property="idNumber" jdbcType="VARCHAR" />
+    <result column="adderss" property="adderss" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="VARCHAR" />
+    <result column="clientLevel" property="clientLevel" jdbcType="VARCHAR" />
+    <result column="realName" property="realName" jdbcType="VARCHAR" />
+    <result column="emall" property="emall" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insertMerchant" parameterType="com.ssm.model.Merchant" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_merchant (userName,idNumber,adderss,phoneNumber,createDate,clientLevel,realName,emall,status) values (#{userName},#{idNumber},#{adderss},#{phoneNumber},#{createDate},#{clientLevel},#{realName},#{emall},#{status})
+  </insert>
+  
+  <select id = "queryExtendm" parameterType="java.lang.String" resultType="com.ssm.model.Merchant">
+  	select * from llc_merchant where idNumber = #{idNumber}
+  </select>
+  
+  <select id = "updateMerchant" parameterType="java.lang.String" resultType="com.ssm.model.Merchant">
+  	select * from llc_merchant where id = #{id}
+  </select>
+  
+  <select id = "selectAllMerchant" resultType="com.ssm.model.Merchant">
+  	select * from llc_merchant
+  </select>
+  
+  <delete id="deleteMerchantInfo" parameterType="java.lang.String">
+  	delete from llc_merchant where id = #{id}
+  </delete>
+
+  
+  <update id="saveMerchant" parameterType="com.ssm.model.Merchant">
+  	update llc_merchant 
+  	set userName=#{userName,jdbcType=VARCHAR},
+  		idNumber=#{idNumber,jdbcType=VARCHAR},
+  		adderss=#{adderss,jdbcType=INTEGER},
+  		phoneNumber=#{phoneNumber,jdbcType=VARCHAR},
+  		createDate=#{createDate,jdbcType=VARCHAR}
+  		clientLevel=#{clientLevel,jdbcType=VARCHAR},
+  		realName=#{realName,jdbcType=VARCHAR}
+  		emall=#{emall,jdbcType=VARCHAR},
+  		status=#{status,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

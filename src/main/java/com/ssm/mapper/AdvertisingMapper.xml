@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.AdvertisingMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.Advertising" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_advertising (photoName,photoByte,createTime,createBy,photoSize,title,photoContent) values (#{photoName},#{photoByte},#{createTime},#{createBy},#{photoSize},#{title},#{photoContent})
+  </insert>
+  
+  <select id = "queryExtendAdvertising" parameterType="java.lang.String" resultType="com.ssm.model.Advertising">
+  	select * from llc_advertising where idNumber = #{idNumber}
+  </select>
+  
+  <select id = "queryAllAdvertising" resultType="com.ssm.model.Advertising">
+  	select * from llc_advertising
+  </select>
+  
+  <select id = "updateAdvertising" parameterType="java.lang.String" resultType="com.ssm.model.Advertising">
+  	select * from llc_advertising where id = #{id}
+  </select>
+  
+  <delete id="deleteAdvertising" parameterType="java.lang.String">
+  	delete from llc_advertising where id = #{id}
+  </delete>
+  
+  <update id="saveAdvertising" parameterType="com.ssm.model.Advertising">
+  	update llc_advertising 
+  	set photoName=#{photoName,jdbcType=VARCHAR},
+  		photoByte=#{photoByte,jdbcType=BLOB},
+  		createBy=#{createBy,jdbcType=VARCHAR},
+  		photoSize=#{photoSize,jdbcType=VARCHAR},
+  		title=#{title,jdbcType=BLOB},
+  		photoContent=#{photoContent,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.CarServiceMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.CarServiceModel" useGeneratedKeys="true" keyProperty="id">
+  	insert into car_service (car_type,service_type,startTime,endTime,price,adderss,createDate,c3,c4,status,createBy) values (#{car_type},#{service_type},#{startTime},#{endTime},#{price},#{adderss},#{createDate},#{c3},#{c4},#{status},#{createBy})
+  </insert>
+  
+  <select id = "queryAllCarService" resultType="com.ssm.model.CarServiceModel">
+  	select * from car_service 
+  </select>
+  
+  <delete id="deleteCarServiceModel" parameterType="java.lang.String">
+  	delete from car_service where id = #{id}
+  </delete>
+  
+  <select id = "updateCarServiceModel" parameterType="java.lang.String" resultType="com.ssm.model.CarServiceModel">
+  	select * from car_service where id = #{id}
+  </select>
+  
+  <update id="saveMemberCarServiceModel" parameterType="com.ssm.model.CarServiceModel">
+  	update car_service 
+  	set car_type=#{car_type,jdbcType=VARCHAR},
+  		service_type=#{service_type,jdbcType=VARCHAR},
+		price=#{price,jdbcType=VARCHAR},
+		adderss=#{adderss,jdbcType=VARCHAR},
+		createDate=#{createDate,jdbcType=VARCHAR},
+  		status=#{status,jdbcType=VARCHAR},
+  		createBy=#{createBy,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

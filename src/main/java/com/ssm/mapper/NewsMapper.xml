@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.NewsMapper">
+
+<resultMap id="BaseResultMap" type="com.ssm.model.News">
+   <id column="id" jdbcType="VARCHAR" property="id" />
+   <result column="title" jdbcType="VARCHAR" property="title" />
+   <result column="author" jdbcType="VARCHAR" property="author" />
+   <result column="count" jdbcType="INTEGER" property="count" />
+   <result column="content" jdbcType="VARCHAR" property="content" />
+   <result column="time" jdbcType="VARCHAR" property="time" />
+ </resultMap>
+<!-- id主键自增长，不需要插入id的值 -->
+  <insert id="insert" parameterType="com.ssm.model.News" useGeneratedKeys="true" keyProperty="id">
+    insert into news (title,author,content,count,time) values (#{title},#{author},#{content},#{count},#{time})
+  </insert>
+  
+  <select id="getTitleInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from news where title = #{title}
+  </select>
+  
+  <update id="updateByTitle" parameterType="com.ssm.model.News">
+  	update news 
+  	set title=#{title,jdbcType=VARCHAR},
+  		author=#{author,jdbcType=VARCHAR},
+  		count=#{count,jdbcType=INTEGER},
+  		content=#{content,jdbcType=VARCHAR},
+  		time=#{time,jdbcType=VARCHAR}
+  	where title=#{title,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="delectByTitle" parameterType="java.lang.String">
+  	delete from news where title=#{title,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.OperatorMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.Operator" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_operator (operatorName,operatorPName,createDate,createBy,status,adderss,updateDate) values (#{operatorName},#{operatorPName},#{createDate},#{createBy},#{status},#{adderss},#{updateDate})
+  </insert>
+  
+  <select id = "queryAllOperator" resultType="com.ssm.model.Operator">
+  	select * from llc_operator 
+  </select>
+  
+  <delete id="deleteOperator" parameterType="java.lang.String">
+  	delete from llc_operator where id = #{id}
+  </delete>
+  
+</mapper>

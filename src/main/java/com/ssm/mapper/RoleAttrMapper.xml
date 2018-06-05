@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.RoleAttrMapper">
+	<resultMap id="BaseResultMap" type="com.ssm.model.Attr">
+	   <id column="id" jdbcType="INTEGER" property="id" />
+	   <result column="position" jdbcType="VARCHAR" property="position"/>
+	   <result column="name" jdbcType="VARCHAR" property="name" />
+	   <result column="createDate" jdbcType="VARCHAR" property="createDate" />
+ 	</resultMap>
+ 	
+ 	<insert id="insertRoleAttr" parameterType="com.ssm.model.RoleAttr" useGeneratedKeys="true" keyProperty="id">
+ 		insert into roleAttr (name,position,createDate) values (#{name},#{position},#{createDate})
+ 	</insert>
+ 	
+ 	<select id="getRoleAttrByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select * from roleAttr where name=#{name}
+  	</select>
+</mapper>

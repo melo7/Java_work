@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.CooperatorMapper">
+
+
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.Cooperator" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_cooperator (cooCompanyName,cooName,cooPNumber,city,createDate,createBy) values (#{cooCompanyName},#{cooName},#{cooPNumber},#{city},#{createDate},#{createBy})
+  </insert>
+  
+  <select id = "queryAllCooperator" resultType="com.ssm.model.Cooperator">
+  	select * from llc_cooperator
+  </select>
+  
+  <delete id="deleteCooperator" parameterType="java.lang.String">
+  	delete from llc_cooperator where id = #{id}
+  </delete>
+  <select id = "updateCooperator" parameterType="java.lang.String" resultType="com.ssm.model.Cooperator">
+  	select * from llc_cooperator where id = #{id}
+  </select>
+  
+  <update id="saveCooperator" parameterType="com.ssm.model.Cooperator">
+  	update llc_cooperator 
+  	set cooCompanyName=#{cooCompanyName,jdbcType=VARCHAR},
+  		cooName=#{cooName,jdbcType=VARCHAR},
+  		cooPNumber=#{cooPNumber,jdbcType=VARCHAR},
+  		city=#{city,jdbcType=VARCHAR},
+  		createDate=#{createDate,jdbcType=VARCHAR},
+  		createBy=#{createBy,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

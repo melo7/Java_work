@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.AttrMapper">
+	
+<resultMap id="BaseResultMap" type="com.ssm.model.Attr">
+   <id column="id" jdbcType="INTEGER" property="id" />
+   <result column="name" jdbcType="VARCHAR" property="name" />
+   <result column="password" jdbcType="VARCHAR" property="password" />
+   <result column="date" jdbcType="VARCHAR" property="date" />
+   <result column="number" jdbcType="VARCHAR" property="number" />
+   <result column="position" jdbcType="VARCHAR" property="position"/>
+ </resultMap>
+<!-- id主键自增长，不需要插入id的值 -->
+  <insert id="insert" parameterType="com.ssm.model.Attr" useGeneratedKeys="true" keyProperty="id">
+    insert into attr (name,password,date,number,position) values (#{name},#{password},#{date},#{number},#{position})
+  </insert>
+  
+  <select id="getAttrByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from attr where name=#{name}
+  </select>
+</mapper>

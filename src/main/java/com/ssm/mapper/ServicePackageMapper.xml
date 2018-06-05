@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.ServicePackageMapper">
+
+
+ <resultMap id="BaseResultMap" type="com.ssm.model.ServicePackage" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="packageName" property="packageName" />
+    <result column="packageNbr" property="packageNbr"  />
+    <result column="startTime" property="startTime" />
+    <result column="endTime" property="endTime"  />
+    <result column="createDate" property="createDate"  />
+    <result column="createBy" property="createBy" />
+  </resultMap>
+<!-- id主键自增长，不需要插入id的值 -->
+  
+  <insert id="insert" parameterType="com.ssm.model.ServicePackage" useGeneratedKeys="true" keyProperty="id">
+  	insert into llc_servicepackage (packageName,packageNbr,startTime,endTime,createDate,createBy) values (#{packageName},#{packageNbr},#{startTime},#{endTime},#{createDate},#{createBy})
+  </insert>
+  
+  <select id = "queryAllServicePackage" resultType="com.ssm.model.ServicePackage">
+  	select * from llc_servicepackage
+  </select>
+  
+  <delete id="deleteServicePackage" parameterType="java.lang.String">
+  	delete from llc_servicepackage where id = #{id}
+  </delete>
+  <select id = "updateServicePackage" parameterType="java.lang.String" resultType="com.ssm.model.ServicePackage">
+  	select * from llc_servicepackage where id = #{id}
+  </select>
+  
+  <update id="saveServicePackage" parameterType="com.ssm.model.ServicePackage">
+  	update llc_servicepackage 
+  	set packageName=#{packageName,jdbcType=VARCHAR},
+  		packageNbr=#{packageNbr,jdbcType=VARCHAR},
+  		createBy=#{createBy,jdbcType=VARCHAR}
+  	where id=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
